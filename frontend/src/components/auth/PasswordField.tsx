@@ -11,6 +11,7 @@ export default function PasswordField() {
             type={type}
             variant="outlined"
             fullWidth
+            required
             slotProps={{
                 input: {
                     endAdornment: (
