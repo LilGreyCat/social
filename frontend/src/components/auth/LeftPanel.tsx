@@ -1,16 +1,14 @@
-import { Box } from '@mui/material';
-import AuthPaper from './AuthPaper';
-import LoginForm from './login/LoginForm';
-import RedirectRegister from './login/RedirectRegister';
+import { Box, BoxProps } from '@mui/material';
 
-export default function LeftPanel() {
+interface LeftPanelProps extends BoxProps {
+    children?: React.ReactNode;
+}
+
+export default function LeftPanel({ children, ...props }: LeftPanelProps) {
 
     return (
-        <Box sx={boxSx}>
-            <AuthPaper>
-                <LoginForm />
-                <RedirectRegister />
-            </AuthPaper>
+        <Box sx={boxSx} {...props}>
+            {children}
         </Box>
     );
 }

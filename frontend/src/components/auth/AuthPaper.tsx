@@ -2,7 +2,7 @@ import { Paper, PaperProps, Stack } from '@mui/material';
 import Logo from '../Logo'
 
 interface AuthPaperProps extends PaperProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export default function AuthPaper({ children, ...props }: AuthPaperProps) {
