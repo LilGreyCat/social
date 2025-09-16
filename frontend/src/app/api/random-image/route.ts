@@ -4,7 +4,7 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const w = Math.max(1, Number(searchParams.get("w") || 1200));
   const h = Math.max(1, Number(searchParams.get("h") || 800));
-  const q = searchParams.get("q") || "technology,network,computer";
+  const q = searchParams.get("q") || "technology,computer,ai";
 
   const key = process.env.UNSPLASH_ACCESS_KEY!;
   const res = await fetch(

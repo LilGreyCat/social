@@ -2,12 +2,19 @@ import { usePasswordToggle } from "@/hooks/usePasswordToggle";
 import { TextField } from "@mui/material";
 import VisibilityAdornment from "./VisibilityAdornment";
 
-export default function PasswordField() {
+interface PasswordFieldProps {
+    confirm?: boolean;
+};
+
+export default function PasswordField(
+    {
+        confirm = false
+    }: PasswordFieldProps) {
     const { type, visible, toggle } = usePasswordToggle();
 
     return (
         <TextField
-            label="Password"
+            label={confirm ? "Confirm Password" : "Password"}
             type={type}
             variant="outlined"
             fullWidth

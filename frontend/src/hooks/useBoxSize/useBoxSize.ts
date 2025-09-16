@@ -10,7 +10,7 @@ import { measureNode, createResizeObserver, cleanupObserver } from "./boxSize.ut
  * The size is updated every time the node is resized.
  * The hook also cleans up the ResizeObserver when the component is unmounted.
  * @param {number} [delay=1000] - The delay in milliseconds before updating the size after the node is resized.
- * @returns {{ ref: React.MutableRefObject<HTMLElement | null>, width: number, height: number }}
+ * @returns {{ ref: React.RefObject<HTMLElement | null>, width: number, height: number }}
  */
 export const useBoxSize = (delay = 1000) => {
   const [size, setSize] = useState<BoxSize>({ width: 0, height: 0 });
