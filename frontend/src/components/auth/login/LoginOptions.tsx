@@ -5,7 +5,7 @@ import Discord from "@/components/auth/Discord";
 export default function LoginOptions() {
 
     return (
-        <Stack direction="row" spacing={2} width="100%" >
+        <Stack direction="row" spacing={1} width="100%" >
             <Button variant="outlined" fullWidth size="large" >
                 <Google />
             </Button>

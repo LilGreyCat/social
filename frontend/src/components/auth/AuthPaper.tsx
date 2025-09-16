@@ -1,4 +1,4 @@
-import { Paper, PaperProps, Stack } from '@mui/material';
+import { Paper, PaperProps, Box } from '@mui/material';
 import Logo from '../Logo'
 
 interface AuthPaperProps extends PaperProps {
@@ -10,28 +10,36 @@ export default function AuthPaper({ children, ...props }: AuthPaperProps) {
     return (
         <Paper sx={paperSx} elevation={4} {...props}>
             <Logo width={50} height={50} customSx={logoSx} />
-            <Stack direction="column" spacing={4} alignItems="flex-start" >
+            <Box sx={boxSx}>
                 {children}
-            </Stack>
+            </Box>
         </Paper>
     );
 }
 
 const paperSx = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
     position: "relative",
     p: { xs: 4, sm: 10 },
     m: { xs: 0, sm: 'auto' },
     borderRadius: { xs: 0, sm: 2 },
-    height: "100%",
-    minHeight: { sm: "814px" },
+    height: "auto",
+    minHeight: { xs: "100vh", sm: "814px" },
     maxWidth: "750px",
+
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
 };
 
 const logoSx = {
     position: "absolute",
     top: 50,
     left: { xs: 20, sm: 50 },
+};
+
+const boxSx = {
+    mt: 12,
+    mb: 6,
+    height: "auto",
+    width: "100%",
 };

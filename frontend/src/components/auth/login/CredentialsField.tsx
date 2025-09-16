@@ -6,6 +6,7 @@ export default function CredentialsField() {
     return (
         <UserDataField
             label="Username or Email"
+            required
             adornment={
                 <AccountCircle
                     sx={{ color: 'text.secondary' }}

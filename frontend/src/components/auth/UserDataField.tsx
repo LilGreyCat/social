@@ -4,11 +4,15 @@ interface RegisterFieldProps {
     label: string;
     type?: string;
     adornment?: React.ReactNode;
+    required?: boolean;
 };
 
-export default function UserDataField(
-    { label, type = "text", adornment }: RegisterFieldProps
-) {
+export default function UserDataField({
+    label,
+    type = "text",
+    adornment,
+    required = false,
+}: RegisterFieldProps) {
 
     return (
         <TextField
@@ -16,7 +20,7 @@ export default function UserDataField(
             type={type}
             variant="outlined"
             fullWidth
-            required
+            required={required}
             slotProps={{
                 input: {
                     endAdornment: (
