@@ -1,6 +1,6 @@
 import { Box, Typography, Link as MuiLink } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useBoxSize } from "@/hooks/useBoxSize";
+import { useBoxSize } from "@/hooks/useBoxSize/useBoxSize";
 import Image from "next/image";
 
 type Credit = {
