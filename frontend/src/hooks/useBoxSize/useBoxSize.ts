@@ -2,40 +2,50 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { type BoxSize } from "./boxSize.utils";
-import { measureNode, createResizeObserver, cleanupObserver } from "./boxSize.utils";
+import {
+  measureNode,
+  createResizeObserver,
+  cleanupObserver,
+} from "./boxSize.utils";
+
+const DEFAULT_SIZE: BoxSize = { width: 0, height: 0 };
 
 /**
- * A hook that measures the size of a node and returns the size
- * in a BoxSize object with the width and height rounded to the nearest integer.
- * The size is updated every time the node is resized.
- * The hook also cleans up the ResizeObserver when the component is unmounted.
- * @param {number} [delay=1000] - The delay in milliseconds before updating the size after the node is resized.
- * @returns {{ ref: React.RefObject<HTMLElement | null>, width: number, height: number }}
+ * A hook that measures the size of a given node and returns a BoxSize object with the width and height rounded to the nearest integer.
+ * The size is updated every time the node is resized and the update is debounced with a given delay.
+ *
+ * @param {number} [delay=1000] - The delay in milliseconds.
+ * @returns {{ ref: (node: HTMLElement | null) => void, ...BoxSize }} - An object containing a ref function and the current size of the node.
  */
 export const useBoxSize = (delay = 1000) => {
-  const [size, setSize] = useState<BoxSize>({ width: 0, height: 0 });
+  const [size, setSize] = useState<BoxSize>(DEFAULT_SIZE);
+  const [node, setNode] = useState<HTMLElement | null>(null);
   const observerRef = useRef<ResizeObserver | null>(null);
   const timerRef = useRef<number | null>(null);
 
-  const schedule = (next: BoxSize) => {
-    if (timerRef.current) window.clearTimeout(timerRef.current);
-    timerRef.current = window.setTimeout(() => setSize(next), delay);
-  };
+  const schedule = useCallback(
+    (next: BoxSize) => {
+      if (timerRef.current) window.clearTimeout(timerRef.current);
+      timerRef.current = window.setTimeout(() => setSize(next), delay);
+    },
+    [delay],
+  );
 
-  const ref = useCallback((node: HTMLElement | null) => {
-    cleanupObserver(observerRef);
-    if (!node) return;
+  useEffect(() => {
+    if (!node) return undefined;
 
     setSize(measureNode(node));
+    const observer = createResizeObserver(schedule);
+    observer.observe(node);
+    observerRef.current = observer;
 
-    observerRef.current = createResizeObserver(schedule);
-    observerRef.current.observe(node);
-  }, [delay]);
+    return () => {
+      cleanupObserver(observerRef);
+      if (timerRef.current) window.clearTimeout(timerRef.current);
+    };
+  }, [node, schedule]);
 
-  useEffect(() => () => {
-    cleanupObserver(observerRef);
-    if (timerRef.current) window.clearTimeout(timerRef.current);
-  }, []);
+  const ref = useCallback((next: HTMLElement | null) => setNode(next), []);
 
   return { ref, ...size };
-}
+};

@@ -2,6 +2,7 @@ import { Button, Stack } from '@mui/material';
 import RegisterGreet from './RegisterGreet';
 import PasswordField from '../PasswordField';
 import UserDataField from '../UserDataField';
+import BirthDateField from './BirthDateField';
 
 export default function RegisterForm() {
 
@@ -19,7 +20,8 @@ export default function RegisterForm() {
             <PasswordField confirm />
             <UserDataField label="First Name" />
             <UserDataField label="Last Name" />
-            {/* Add date picker */}
+            {/* TODO: Add mui date picker */}
+            <BirthDateField />
             <Button
                 type="submit"
                 variant="contained"
