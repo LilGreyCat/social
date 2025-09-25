@@ -2,7 +2,7 @@ import { Stack, Button } from "@mui/material";
 import { Google, GitHub, Apple } from "@mui/icons-material";
 import Discord from "@/components/auth/Discord";
 
-export default function LoginOptions() {
+export default function AuthOptions() {
 
     return (
         <Stack direction="row" spacing={1} width="100%" >

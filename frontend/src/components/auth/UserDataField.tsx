@@ -16,20 +16,21 @@ export default function UserDataField({
 
     return (
         <TextField
-            label={label}
-            type={type}
-            variant="outlined"
-            fullWidth
-            required={required}
-            slotProps={{
-                input: {
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            {adornment}
-                        </InputAdornment>
-                    ),
-                },
-            }}
-        />
+      label={label}
+      type={type}
+      variant="outlined"
+      fullWidth
+      required={required}
+      slotProps={{
+        input: {
+          endAdornment: (
+            <InputAdornment position="end">
+              {adornment}
+            </InputAdornment>
+          ),
+        },
+        inputLabel: type === 'date' ? { shrink: true } : undefined,
+      }}
+    />
     );
 }

@@ -1,6 +1,10 @@
 import { Divider, Typography } from '@mui/material';
 
-export default function LoginDivider() {
+interface AuthDividerProps {
+    labelText: string;
+}
+
+export default function AuthDivider({labelText}: AuthDividerProps) {
 
     return (
         <Divider
@@ -13,7 +17,7 @@ export default function LoginDivider() {
             }}
         >
             <Typography variant="body2" color="text.secondary">
-                or sign in with
+                {labelText}
             </Typography>
         </Divider>
     );

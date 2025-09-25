@@ -2,7 +2,8 @@ import { Button, Stack } from '@mui/material';
 import RegisterGreet from './RegisterGreet';
 import PasswordField from '../PasswordField';
 import UserDataField from '../UserDataField';
-import BirthDateField from './BirthDateField';
+import AuthDivider from '../AuthDivider';
+import AuthOptions from '../AuthOptions';
 
 export default function RegisterForm() {
 
@@ -18,10 +19,9 @@ export default function RegisterForm() {
             <UserDataField label="Email" type="email" required />
             <PasswordField />
             <PasswordField confirm />
-            <UserDataField label="First Name" />
-            <UserDataField label="Last Name" />
-            {/* TODO: Add mui date picker */}
-            <BirthDateField />
+            <UserDataField label="First Name" required />
+            <UserDataField label="Last Name"  required />
+            <UserDataField label="Birth Date" type="date" required />
             <Button
                 type="submit"
                 variant="contained"
@@ -30,8 +30,8 @@ export default function RegisterForm() {
             >
                 Sign Up
             </Button>
-            {/* <RegisterDivider /> */}
-            {/* <RegisterOptions /> */}
+            <AuthDivider labelText='or sign up with'/>
+            <AuthOptions />
         </Stack>
     );
 }

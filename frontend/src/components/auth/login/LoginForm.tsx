@@ -2,8 +2,8 @@ import { Button, Stack } from '@mui/material';
 import LoginGreet from './LoginGreet';
 import CredentialsField from './CredentialsField';
 import PasswordField from '../PasswordField';
-import LoginDivider from './LoginDivider';
-import LoginOptions from './LoginOptions';
+import AuthDivider from '../AuthDivider';
+import AuthOptions from '../AuthOptions';
 
 export default function LoginForm() {
 
@@ -25,8 +25,8 @@ export default function LoginForm() {
             >
                 Sign In
             </Button>
-            <LoginDivider />
-            <LoginOptions />
+            <AuthDivider labelText="or sign in with" />
+            <AuthOptions />
         </Stack>
     );
 }
